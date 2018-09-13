@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonjs",
+        "target": "es6",
+        "allowJs": true,
+        "sourceMap": true,
+        "lib": [ "es2015", "es7"]
+    },
+    "include": [
+        "src/server.js"
+        
+    ]
+    ,
+    "exclude": [
+        "node_modules",
+        "src/config"
+    ]
+}
