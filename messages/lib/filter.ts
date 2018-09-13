@@ -1,11 +1,7 @@
 import {User, FilterCriteria, DisplayMessage, MessageKey} from '../models';
 declare var process;
 export default class Filter {
-    /**
-     * Takes an array of Users and returns an array of users that match all criteria presented in the filter array;
-     * @param users Array of Users we are searching
-     * @param filter Array of SearchCriteria objects we'll use to 
-     */
+
     static FilterUsers (users: User[], filter: FilterCriteria[]) {
         try {
             let foundUsers = [];
@@ -24,7 +20,6 @@ export default class Filter {
             }
             return [false];
         }
-        
     }
     
     static GetFilteredMessages(usersToDisplay : User[] , userMessages: any, messageIndex: any) {
@@ -56,7 +51,5 @@ export default class Filter {
             }
             return [false];
         }
-        
      }
-    
 }

@@ -83,22 +83,21 @@ describe ("Test Filter", () => {
         expect(sampleMessage.votes[0]).to.have.keys('id', 'age', 'sex', 'income', 'livingEnvironment');
     });
 
-    it ('should not accept invalid filter', () => {
+    it ('should not accept undefined filter', () => {
         let undefinedFilter = Filter.FilterUsers(MockUsers, undefined);
+        expect(undefinedFilter).to.be.an('array').that.has.lengthOf(1).that.includes(false);
     });
     it ('should ignore blank search parameter', () => {
+        let emptyIncomeFilter = [ageCriteria, incomeCriteria, livingEnvironmentCriteria, new FilterCriteria('income', [])];
+        let filteredUsers = Filter.FilterUsers(MockUsers, baseFilter);
+        expect(filteredUsers).to.have.lengthOf(11);
+        filteredUsers.forEach(user => {
+            expect(ageCriteria.criteria).to.include(user.age);
+            expect(incomeCriteria.criteria).to.include(user.income);
+            expect(livingEnvironmentCriteria.criteria).to.include(user.livingEnvironment); 
 
-    });
-    it ('should return no results with invalid filter category', () => {
-
-    });
-
-    it ('should handle invalid messages', () => {
-
-    });
-
-    it ('should handle invalid users', () => {
-
+            validFitleredUsers = filteredUsers;
+        });
     });
 });
 
@@ -134,11 +133,8 @@ describe ("Test Utility", () => {
 
     it ("BuildMessageIndex should build valid Messages index", () => {
         let testMessageIndex = Utility.BuildMessageIndex(MockMessages);
-        //test it has 10 questions
         expect(Object.keys(testMessageIndex)).to.be.lengthOf(10);
-        //check question 1s length
         expect(Object.keys(testMessageIndex["1"])).to.be.lengthOf(7);
-        //check the first message is correct
         expect(testMessageIndex["1"]["2"]).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
 
         let sampleMessage : DisplayMessage = testMessageIndex["1"]["2"]

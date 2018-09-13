@@ -11,11 +11,11 @@ export default class Utility {
         try {
             let searchableUsers = users.map(user => {
                 return new User(user.id, user.age, user.sex, user.income, user.livingEnvironment)
-            })
+            });
             return searchableUsers;  
         } catch (ex) {
             if (!(process.env.NODE_ENV === 'test')) {
-                console.log('Error in BuildUserIndex: ', ex);
+                console.log('Error in BuildSearchableUsers: ', ex);
             }
             return false;
         }
@@ -63,10 +63,9 @@ export default class Utility {
                 if (!messageIndex[questionKey]) {
                     messageIndex[questionKey] = {}
                 };
-
                 if (messageIndex[questionKey][id]) {
                     console.log(`Duplicate Messages for Question ${questionId} Message ${id}`)
-                }
+                };
                 messageIndex[questionKey][messageKey] = new DisplayMessage (id, questionId, text, creatorId);
                 });
             return messageIndex;
