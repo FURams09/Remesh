@@ -1,5 +1,4 @@
 import {User} from './index';
-import QueryAPI from '../lib/api';
 /**
  * Votes is an array of messageKeys
  * messageKeys = [questionId, messageId, ?voteId(undefined if user is creator of that message)]

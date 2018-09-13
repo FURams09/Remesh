@@ -1,1 +1,0 @@
-export const INVALID_API_QUERY = 'invalid_api_query';

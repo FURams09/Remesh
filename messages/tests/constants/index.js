@@ -1,8 +1,10 @@
 import MockDB from './db';
 
-export const mockMessages = MockDB.messages;
+export const MockMessages = MockDB.messages;
 
-export const mockVotes = MockDB.votes;
+export const MockVotes = MockDB.votes;
 
-export const mockUsers = MockDB.users;
+export const MockUsers = MockDB.users;
+
+export const MockQuestions = MockDB.questions;
 

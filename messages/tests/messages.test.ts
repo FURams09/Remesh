@@ -1,7 +1,7 @@
 import * as mocha from 'mocha';
 const expect = require('chai').expect;
 import {User, FilterCriteria, DisplayMessage, MessageKey} from '../models';
-import {mockMessages, mockUsers, mockVotes} from './constants'
+import {MockMessages, MockUsers, MockVotes, MockQuestions} from './constants'
 import queryAPI from '../lib/api';
 import Utility from '../lib/utility';
 import Filter from '../lib/filter';
@@ -46,25 +46,45 @@ describe ("Test API", () => {
 })
 
 describe ("Test Filter", () => {
-    it ("should return correctly filtered users", () => {
-        let ageCriteria = new FilterCriteria('age', ['18-24', '65+'])
-        let incomeCriteria = new FilterCriteria('income', ['<20,000']);
-        let livingEnvironmentCriteria = new FilterCriteria('livingEnvironment', ['Urban', 'Rural']);
-        let filteredUsers = Filter.FilterUsers(mockUsers, [ageCriteria, incomeCriteria, livingEnvironmentCriteria]);
-        expect(filteredUsers).to.have.lengthOf(11);
+    let validFitleredUsers = [];
+    let mockUserMessages, mockMessageIndex, baseFilter;
+    let ageCriteria, incomeCriteria, livingEnvironmentCriteria
+    before(async () => {
+        mockUserMessages = Utility.BuildUserMessages(MockVotes, MockMessages);
+        mockMessageIndex = Utility.BuildMessageIndex(MockMessages);
+        ageCriteria = new FilterCriteria('age', ['18-24', '65+'])
+        incomeCriteria = new FilterCriteria('income', ['<20,000']);
+        livingEnvironmentCriteria = new FilterCriteria('livingEnvironment', ['Urban', 'Rural']);
+        baseFilter = [ageCriteria, incomeCriteria, livingEnvironmentCriteria];
 
+    });
+    
+    it ("should return correctly filtered users", () => {
+        
+        let filteredUsers = Filter.FilterUsers(MockUsers, baseFilter);
+        expect(filteredUsers).to.have.lengthOf(11);
         filteredUsers.forEach(user => {
             expect(ageCriteria.criteria).to.include(user.age);
             expect(incomeCriteria.criteria).to.include(user.income);
             expect(livingEnvironmentCriteria.criteria).to.include(user.livingEnvironment); 
+
+            validFitleredUsers = filteredUsers;
         });
     });
+    
     it ("should return valid message list", () => {
-
+        expect(validFitleredUsers).to.have.lengthOf(11); //make sure filter test is passing the right filter
+        let filteredMessages = Filter.GetFilteredMessages(validFitleredUsers, mockUserMessages, mockMessageIndex);
+        expect(Object.keys(filteredMessages)).to.have.lengthOf(10);
+        expect(Object.keys(filteredMessages[1])).to.have.lengthOf(4);
+        let sampleMessage = filteredMessages[1][2];
+        expect(sampleMessage).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
+        expect(sampleMessage.votes).to.be.an('array').to.have.lengthOf(6);
+        expect(sampleMessage.votes[0]).to.have.keys('id', 'age', 'sex', 'income', 'livingEnvironment');
     });
 
     it ('should not accept invalid filter', () => {
-
+        let undefinedFilter = Filter.FilterUsers(MockUsers, undefined);
     });
     it ('should ignore blank search parameter', () => {
 
@@ -83,14 +103,8 @@ describe ("Test Filter", () => {
 });
 
 describe ("Test Utility", () => {
-    let messages, users, votes;
-    before(async () => {
-        messages = mockMessages;
-        users = mockUsers;
-        votes = mockVotes;
-    })
     it ("BuildSearchableUsers should build valid SearchableUsers", () => {
-        let testUsers = Utility.BuildSearchableUsers(users);
+        let testUsers = Utility.BuildSearchableUsers(MockUsers);
         expect(testUsers).to.be.an('array');
         expect(testUsers).to.be.lengthOf(1000);
         let randomUser = testUsers[0];
@@ -119,7 +133,7 @@ describe ("Test Utility", () => {
     });
 
     it ("BuildMessageIndex should build valid Messages index", () => {
-        let testMessageIndex = Utility.BuildMessageIndex(messages);
+        let testMessageIndex = Utility.BuildMessageIndex(MockMessages);
         //test it has 10 questions
         expect(Object.keys(testMessageIndex)).to.be.lengthOf(10);
         //check question 1s length
@@ -135,7 +149,7 @@ describe ("Test Utility", () => {
         expect(sampleMessage.creatorId).to.equal(894);
         expect(sampleMessage.votes).to.be.an('array').that.is.empty;
 
-        sampleMessage.AddVoteToMessage(mockUsers[0]);
+        sampleMessage.AddVoteToMessage(MockUsers[0]);
         
         expect(sampleMessage.votes).to.be.an('array').that.is.lengthOf(1);
         expect(sampleMessage.votes[0].id).to.equal(1);

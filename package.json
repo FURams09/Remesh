@@ -8,7 +8,7 @@
     "start:cmd": "tsc -p tsconfig.cmd.json && nodemon dist_cmd/cmd.js",
     "build": "rd /s /q dist && tsc --watch",
     "run:api": "npm run --prefix ../interview-mock-api serve",
-    "test": "rd /s /q test && tsc -p tsconfig.test.json && mocha test/tests"
+    "test": "rd /s /q test && tsc -p tsconfig.test.json && SET NODE_ENV=test && mocha test/tests"
   },
   "author": "",
   "license": "ISC",

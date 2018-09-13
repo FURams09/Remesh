@@ -1,53 +1,62 @@
-import {User, FilterCriteria, DisplayMessage} from '../models';
-
-export default class Search {
+import {User, FilterCriteria, DisplayMessage, MessageKey} from '../models';
+declare var process;
+export default class Filter {
     /**
      * Takes an array of Users and returns an array of users that match all criteria presented in the filter array;
      * @param users Array of Users we are searching
      * @param filter Array of SearchCriteria objects we'll use to 
      */
     static FilterUsers (users: User[], filter: FilterCriteria[]) {
-        let foundUsers = [];
-        users.forEach(user => {
-            let found = true;
-            filter.every(category => {
-                if (category.criteria.length === 0 || category.criteria.includes(user[category.key])) {
-                    //if a category has no criteria we can probably let it slide, maybe log it at a later date. 
-                    //or if the user's value matches one of the categories specified by the filter. 
-                    return true;
-                } else {
-                    //user does not match all criteria so we bail out of the every loop and don't push it to the final
-                    found = false;
-                    return false;
+        try {
+            let foundUsers = [];
+            users.forEach(user => {
+                let found = filter.every(category => {
+                    return (category.criteria.length === 0 || category.criteria.includes(user[category.key]));
+                });
+                if (found) {
+                    foundUsers.push(user);
                 }
-                return true;
-            });
-    
-            if (found) {
-                foundUsers.push(user);
+            })
+            return foundUsers;
+        } catch (ex) {
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log(ex);
             }
-        })
-    
-        return foundUsers;
+            return [false];
+        }
+        
     }
     
-    static GetUsersMessages(usersToDisplay : User[], userMessages: any, messages: any, questions: any) {
+    static GetFilteredMessages(usersToDisplay : User[] , userMessages: any, messageIndex: any) {
+        try {
+            let returnMessages = {}; 
+            usersToDisplay.forEach(user => {
+                 let currentUsermessages = userMessages[user.id];
+                 currentUsermessages.forEach((message : MessageKey) => {
+                    if (!returnMessages[message.questionId]) { 
+                        returnMessages[message.questionId] = {}
+                    };
+                    if (!returnMessages[message.questionId][message.messageId]) { 
+                        returnMessages[message.questionId][message.messageId] = messageIndex[message.questionId][message.messageId];
+                    };
     
-        let results = usersToDisplay.map(user => {
-             let currentUsermessages = userMessages[user.id];
-             let allMessages = currentUsermessages.map(message => {
-                 let usersMessage : DisplayMessage = messages[message[0]][message[1]]
-                 usersMessage.AddVoteToMessage(user);
-                 if (usersMessage.creatorId === user.id) {
-                     usersMessage.hasCreator = true;
-                 }
-                 return usersMessage;
-             })
-            
-             return allMessages;
-        })
-        return results;
-     
+                    let votedMessage:DisplayMessage = returnMessages[message.questionId][message.messageId]
+                    if (!votedMessage) {throw new Error(`message not found questionId: ${message.questionId} messageId: ${message.messageId}`)}
+                     
+                    votedMessage.AddVoteToMessage(user);
+                    if (votedMessage.creatorId === user.id) {
+                        votedMessage.hasCreator = true;
+                    };
+                 })
+            })
+            return returnMessages;  
+        } catch (ex) {
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log(ex);
+            }
+            return [false];
+        }
+        
      }
     
 }

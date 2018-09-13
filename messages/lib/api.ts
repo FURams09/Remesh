@@ -1,6 +1,5 @@
 import apiConfig from '../config/api';
 import axios from 'axios';
-import {INVALID_API_QUERY} from './errors';
 
 export default async (queryType: string, id : number = -1) => {
         const url = `${apiConfig.url}/${queryType}?${id >=0 ? '' : `${id}`}`
@@ -12,7 +11,9 @@ export default async (queryType: string, id : number = -1) => {
             }
             return response.data;
         } catch (ex) {
-            console.log(ex);
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log(ex.config);
+            }
             return false;
         }   
     };

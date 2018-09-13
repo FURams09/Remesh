@@ -14,7 +14,9 @@ export default class Utility {
             })
             return searchableUsers;  
         } catch (ex) {
-            console.log('Error in BuildUserIndex: ', ex);
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log('Error in BuildUserIndex: ', ex);
+            }
             return false;
         }
         
@@ -42,7 +44,9 @@ export default class Utility {
             });
             return  userMessageIndex;  
         } catch (ex) {
-            console.log('Error in BuildUserIndex: ', ex);
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log('Error in BuildUserIndex: ', ex);
+            }
             return false;
         }
     }
@@ -67,21 +71,10 @@ export default class Utility {
                 });
             return messageIndex;
         } catch (ex) {
-            console.log('Error in BuildMessageIndex: ', ex);
+            if (!(process.env.NODE_ENV === 'test')) {
+                console.log('Error in BuildMessageIndex: ', ex);
+            }
             return false;
         }
     };
-    /**
-     * Takes potential JSON Object filter and returns either false if there was an error or 
-     * the validated filter in the format expected by the rest of the app.
-     * @param filter JSON object you are checking if it is a valid filter. 
-     */
-    static isValidFilter(filter) {
-        try {
-            let validFilter = JSON.parse(filter);
-            return validFilter;
-        } catch (ex) {
-            return false;
-        }
-    }
-}
+};
