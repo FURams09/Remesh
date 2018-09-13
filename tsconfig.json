@@ -8,12 +8,12 @@
         "lib": [ "es2015", "es7"]
     },
     "include": [
-        "src/server.js"
+        "messages/server.js"
         
     ]
     ,
     "exclude": [
         "node_modules",
-        "src/config"
+        "messages/config"
     ]
 }

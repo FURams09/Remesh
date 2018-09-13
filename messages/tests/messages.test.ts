@@ -4,6 +4,7 @@ import {User, FilterCriteria, DisplayMessage, MessageKey} from '../models';
 import {mockMessages, mockUsers, mockVotes} from './constants'
 import queryAPI from '../lib/api';
 import Utility from '../lib/utility';
+import Filter from '../lib/filter';
 declare var require: any
 
 
@@ -46,7 +47,17 @@ describe ("Test API", () => {
 
 describe ("Test Filter", () => {
     it ("should return correctly filtered users", () => {
+        let ageCriteria = new FilterCriteria('age', ['18-24', '65+'])
+        let incomeCriteria = new FilterCriteria('income', ['<20,000']);
+        let livingEnvironmentCriteria = new FilterCriteria('livingEnvironment', ['Urban', 'Rural']);
+        let filteredUsers = Filter.FilterUsers(mockUsers, [ageCriteria, incomeCriteria, livingEnvironmentCriteria]);
+        expect(filteredUsers).to.have.lengthOf(11);
 
+        filteredUsers.forEach(user => {
+            expect(ageCriteria.criteria).to.include(user.age);
+            expect(incomeCriteria.criteria).to.include(user.income);
+            expect(livingEnvironmentCriteria.criteria).to.include(user.livingEnvironment); 
+        });
     });
     it ("should return valid message list", () => {
 
@@ -228,7 +239,6 @@ describe ("Test Models", () => {
 
         let undefinedCreator = () =>{new DisplayMessage(1, 2, 'Sample Message', undefined);}
         expect(undefinedCreator).to.throw();
-
         
     });
 })

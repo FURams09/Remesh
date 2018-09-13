@@ -5,8 +5,8 @@ const INCOMES = ["<20,000", "20,000-30,000", "30,000-40,000", "40,000-50,000", "
 const LIVING_ENVIRONMENT = ["Suburban", "Urban", "Rural"]
 
 export default {
-  AGES,
-  SEXES,
-  INCOMES,
-  LIVING_ENVIRONMENT
+  age: AGES,
+  sex: SEXES,
+  income: INCOMES,
+  livingEnvironment: LIVING_ENVIRONMENT
 }

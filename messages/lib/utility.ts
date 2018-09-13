@@ -8,15 +8,15 @@ export default class Utility {
    
    static BuildSearchableUsers(users: any[]) {
 
-    try {
-        let searchableUsers = users.map(user => {
-            return new User(user.id, user.age, user.sex, user.income, user.livingEnvironment)
-        })
-        return searchableUsers;  
-    } catch (ex) {
-        console.log('Error in BuildUserIndex: ', ex);
-        return false;
-    }
+        try {
+            let searchableUsers = users.map(user => {
+                return new User(user.id, user.age, user.sex, user.income, user.livingEnvironment)
+            })
+            return searchableUsers;  
+        } catch (ex) {
+            console.log('Error in BuildUserIndex: ', ex);
+            return false;
+        }
         
     }
 
