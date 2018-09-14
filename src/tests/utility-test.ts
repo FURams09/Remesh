@@ -43,7 +43,6 @@ describe ("Test Utility", () => {
         expect(testMessageIndex["1"]["2"]).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
 
         let sampleMessage : DisplayMessage = testMessageIndex["1"]["2"]
-        console.log(sampleMessage);
         expect(sampleMessage.questionId).to.equal(1);
         expect(sampleMessage.messageId).to.equal(2);
         expect(sampleMessage.text).to.equal('I\'m happy with how she\'s been doing');

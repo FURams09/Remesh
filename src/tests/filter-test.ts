@@ -37,11 +37,11 @@ describe ("Test Filter", () => {
     it ("should return valid message list", () => {
         expect(validFitleredUsers).to.have.lengthOf(11); //make sure filter test is passing the right filter
         let filteredMessages = Filter.GetFilteredMessages(validFitleredUsers, mockUserMessages, mockMessageIndex);
-        expect(Object.keys(filteredMessages)).to.have.lengthOf(10);
-        expect(Object.keys(filteredMessages[1])).to.have.lengthOf(4);
-        let sampleMessage = filteredMessages[1][2];
+        expect(filteredMessages).to.be.an('array').to.have.lengthOf(41);
+        let sampleMessage = filteredMessages[1];
+        //console.log(filteredMessages[1].votes)
         expect(sampleMessage).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
-        expect(sampleMessage.votes).to.be.an('array').to.have.lengthOf(6);
+        expect(sampleMessage.votes).to.be.an('array').to.have.lengthOf(4);
         expect(sampleMessage.votes[0]).to.have.keys('id', 'age', 'sex', 'income', 'livingEnvironment');
     });
 

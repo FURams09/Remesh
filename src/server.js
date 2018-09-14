@@ -1,5 +1,5 @@
 const express = require('express');
-import QueryAPI from './lib/api';
+import QueryRemesh from './lib/api';
 import Search from "./lib/filter";
 import Utility from './lib/utility'      
 
@@ -26,9 +26,9 @@ app.get('/', (req, res, next) => {
 
 app.post('/searchResults', async (req, res, next) => {
     try {
-        let messages = QueryAPI('messages');
-        let votes = QueryAPI('votes');
-        let users = QueryAPI('users');
+        let messages = QueryRemesh('messages');
+        let votes = QueryRemesh('votes');
+        let users = QueryRemesh('users');
 
         let buildSearchCriteria = new Promise ((resolve, reject) => {
             try {

@@ -10,8 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("../config/api");
 const axios_1 = require("axios");
-exports.default = (queryType, id = -1) => __awaiter(this, void 0, void 0, function* () {
-    const url = `${api_1.default.url}/${queryType}?${id >= 0 ? '' : `${id}`}`;
+/**
+ * Make a request to the Remesh API. Wrote a wrapper function for making these request so there would be
+ * consistent error handling for all requests, and because of the consitent nature of avaiable API Endpoints
+ * @param {string} queryType The route you want to retrieve from Remesh API
+ * @param {number} id - id of user wanted (optional);
+ */
+const QueryRemesh = (queryType, id = 0) => __awaiter(this, void 0, void 0, function* () {
+    const url = `${api_1.default.url}/${queryType}?${id > 0 ? '' : `${id}`}`;
     try {
         let response = yield axios_1.default.get(url);
         if (response.status !== 200) {
@@ -26,4 +32,5 @@ exports.default = (queryType, id = -1) => __awaiter(this, void 0, void 0, functi
         return false;
     }
 });
+exports.default = QueryRemesh;
 //# sourceMappingURL=api.js.map
