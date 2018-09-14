@@ -1,6 +1,7 @@
 # Gregory Padin's Remesh Interview Project
 
-Thank you again for considering me for a position at Remesh. Below I've outlined the structure of the project 
+Thank you again for considering me for a position at Remesh. Below I've outlined the structure of this project and everything you should need to know to get it working.
+If you have any questions don't hesitate to ask. I look forward to hearing back from you. 
 
 ## Project Structure
 
@@ -12,10 +13,22 @@ The rest of the directory is used in the message filter app. Building either pro
 files to a dist-[project name] directory in the main directory.
 
 Both projects have their tests in the same _tests_ folder but are divided out by module. 
-Although in the real world these the two projects don't share any code and build into two different project directories 
+In the real world these two projects don't share any code and build into two different project directories 
 so it would have probably been better to run them in seperate test folders, but for this exercise it was convenient enough 
 to just run them all with the same structure as the _src_ folder. 
 
+
+#### Personal Questions
+>What is something you worked on that you’re particularly proud of? It
+>can be a personal project or something you did professionally. You don’t
+>have to write a book, but we’d love to hear why you’re proud of it.
+
+We recently installed the first version of our next build at a new clients site. This was about a year of development work and besides three new major features we added specifically for this client, this was also the first full release after we upgraded from .NET 2.0 to .NET 4.0 so there were also a fair amount of changes related to that which we had not released to the wild yet. 
+
+The product began as a DOS program and over the last 20 years the code base had become the classic monolithic nightmare. We made a lot of improvements over the .NET upgrade, but at the beginning of the project I decided I wanted to put extra focus on making sure these new features were extensible and up to more modern standards. About a week before they were ready to go live they decided they wanted the ability to run a report against their entire database on demand, as well as the original spec of exporting a single record whenever one of their records was updated with no user input. I think it took about two days to refactor my code to give them the report they wanted and when I showed it to the client his reaction was “My only complaint is I don’t need to run it more often because it’s just so fast”. They’ve been live for about a month and have been calling with a lot of usage questions but no technical issues yet. This tells me they’re using it actively and everything’s running smoothly. 
+
+>What is something new you recently learned and why is it awesome?
+As you'll see in this project I just started learning typescript. It's awesome because it removes a lot of frustration points with normal javascript development. I didn't explore nearly all of the power of typescript but even having something like requiring an array of a certain class saved me time when refactoring code. The adoption cost is low since if you're already doing some transpiling you can just add a ts plugin and start writing your typescript code. Since it compiles down to javascript it also means you can use it when it's helpful and disregard it when it's not.
 
 #### Array Reverser
 ___
