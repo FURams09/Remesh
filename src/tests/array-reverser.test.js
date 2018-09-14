@@ -2,7 +2,6 @@
 const expect = require('chai').expect;
 import * as mocha from 'mocha';
 import ArrayReverser from '../lib/array-reverser';
-//Made this a js file instead of ts because it was easier to test runtime type errors where it doesn't get passed an array
 
 describe('Test ReverseArray', () => {
     it('should reverse valid array', (done) => {

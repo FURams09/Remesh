@@ -54,13 +54,16 @@ export default class Utility {
             return false;
         }
     }
-    
+    /**
+     * Takes an array of messages, and returns an index with a compound key of the questionId and the MessageID (represented by a MessageKey later);
+     * 
+     * @param messages An array of Messages from Remesh Session
+     */
     static BuildMessageIndex (messages: any[])  {
         let messageIndex = {}
         try {
             messages.forEach(message => {
                 let {questionId, creatorId, id, text} = message;
-                if(!questionId || !creatorId || !id || !text) { throw new Error(`Missing key for user ${creatorId}: Message ${message}`)}
                 let questionKey : number = questionId
                 let messageKey: number = id;
                 if ( !(typeof(questionKey) === 'number') || !(typeof(messageKey) === 'number')) { throw new Error(`Message with invalid index QuestionId ${questionKey} MessageId ${messageKey}`)}
