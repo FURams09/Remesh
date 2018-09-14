@@ -5,21 +5,28 @@ Thank you again for considering me for a position at Remesh. Below I've outlined
 ##Project Structure
 I decided to make this as a typescript project both as an excuse to try the typescript I've been learning on a real world project, and because it made working with the custom data structures relatively easy, from a developer standpoint.
 
+The package.json file is configured for Windows so if you're running this on a Mac you'll need to make changes to the scripts to run these programs.
+
+the remesh folder 
 
 ##Running The Programs
 
 ####Array Reverser
-
+___
 >Write some code (including tests) that will reverse an array of>arbitrary elements
 >in place along with any arrays (or  arrays of >arrays). 
 >For example: [1, 2, [3, 4, 5], [6, [7, 8], 9]] => [[9, [8, 7],6], [5, 4, 3], 2, 1]
 
+The run-array.js script is where you can define the array you would like to reverse by setting arrayToReverse. This is the only configuration necessary. When it runs it will output the reversed array to the console and exit. 
 
 Run: `npm run start`
-This command will clean the dist folder, run the ts compiler to recreate the 
+This command will 
+    -Clean the dist folder and run the ts compiler based on tsconfig.array.json. You can also run this step by running `npm run build:array`
+    -run the script run-array.js. 
 
 
 ####Message Filter
+___
 >We have an API that returns JSON-encoded data related to one of our
 >Remesh sessions. Our API returns four types of data: users, questions,
 >messages, and votes.

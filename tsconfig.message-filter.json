@@ -8,7 +8,7 @@
         "lib": [ "es2015", "es7"]
     },
     "include": [
-        "remesh/server.js"
+        "src/server.js"
     ]
     ,
     "exclude": [
