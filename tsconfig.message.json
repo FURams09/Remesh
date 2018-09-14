@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "dist/message-filter",
+        "outDir": "dist-message-filter",
         "module": "commonjs",
         "target": "es6",
         "allowJs": true,
