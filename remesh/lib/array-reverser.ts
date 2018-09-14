@@ -1,5 +1,5 @@
 class ArrayReverser {
-    static reverseArray(arr) {
+    reverseArray(arr: any[]) {
         //odd numbered arrays will round down and leave out the n/2 + 1th element but that would not need to swap places. Do a check after the reverse if n%2 ===1 if it's an array and flip it in place;
         let maxIndex = arr.length / 2;
         if (!Array.isArray(arr)) {
@@ -32,7 +32,7 @@ class ArrayReverser {
         return arr;
     }
 
-    static valueIsValid(val: any) {
+    valueIsValid(val: any) {
         return typeof(val) === 'number' || Array.isArray(val)
     }
     

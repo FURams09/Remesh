@@ -1,6 +1,6 @@
 const express = require('express');
 import QueryAPI from './lib/api';
-import Search from "./lib/search";
+import Search from "./lib/filter";
 import Utility from './lib/utility'      
 
 import {FilterCriteria} from './models';
@@ -24,19 +24,6 @@ app.get('/', (req, res, next) => {
     }
     
 });
-
-app.post('/reverse', (req, res, next) => {
-    try {
-        let array = [1, 2, [3, 4, 5], [6, [7, 8], 9]] ;
-        array = {fail: true};
-        let reversedArray = ArrayReverser.reverseArray(array);
-
-        res.send(reversedArray);
-    } catch (ex) {
-        next(ex);
-    }
-    
-})
 
 app.post('/searchResults', async (req, res, next) => {
     try {
