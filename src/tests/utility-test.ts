@@ -41,7 +41,6 @@ describe ("Test Utility", () => {
         expect(Object.keys(testMessageIndex)).to.be.lengthOf(10);
         expect(Object.keys(testMessageIndex["1"])).to.be.lengthOf(7);
         expect(testMessageIndex["1"]["2"]).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
-
         let sampleMessage : DisplayMessage = testMessageIndex["1"]["2"]
         expect(sampleMessage.questionId).to.equal(1);
         expect(sampleMessage.messageId).to.equal(2);

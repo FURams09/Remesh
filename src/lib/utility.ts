@@ -6,7 +6,14 @@ export enum queryType {
     votes, 
 }
 export default class Utility {
-   
+   /**
+    * This function takes the Array of users from the remesh session and turns them into a
+    * User. Even though an unprocessed user object from the API will work as a valid user, 
+    * I wanted to use the new User constructor as an easy way to to validate all of the users
+    * (and because it gives you intellisense!)
+    * 
+    * @param users Array of users in Remesh session
+    */
    static BuildSearchableUsers(users: any[]) {
 
         try {
@@ -22,7 +29,11 @@ export default class Utility {
         }
         
     }
-
+/**
+ * Takes the votes and messages for a session and 
+ * @param votes An array of Votes from Remesh Session
+ * @param messages An array of Messages from Remesh Session
+ */
     static BuildUserMessages (votes: any[], messages: any[]) {
         try {
             let userMessageIndex = {};
@@ -36,13 +47,6 @@ export default class Utility {
                 userMessageIndex[vote.userId].push(new MessageKey(vote.questionId, vote.messageId, vote.id));
             });
 
-            messages.forEach(message => {
-                if (!userMessageIndex[message.creatorId]) {
-                    userMessageIndex[message.creatorId] = [];
-                }
-                userMessageIndex[message.creatorId].push(new MessageKey(message.questionId, message.id, message.creatorId));
-                
-            });
             return  userMessageIndex;  
         } catch (ex) {
             if (!(process.env.NODE_ENV === 'test')) {

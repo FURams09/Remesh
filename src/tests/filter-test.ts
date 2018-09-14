@@ -38,10 +38,11 @@ describe ("Test Filter", () => {
         expect(validFitleredUsers).to.have.lengthOf(11); //make sure filter test is passing the right filter
         let filteredMessages = Filter.GetFilteredMessages(validFitleredUsers, mockUserMessages, mockMessageIndex);
         expect(filteredMessages).to.be.an('array').to.have.lengthOf(41);
-        let sampleMessage = filteredMessages[1];
-        //console.log(filteredMessages[1].votes)
+        let creatorMessage = filteredMessages[1]
+        let sampleMessage = filteredMessages[2];
+        expect(creatorMessage).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes', 'hasCreator');
         expect(sampleMessage).to.have.all.keys('questionId', 'messageId', 'text', 'creatorId', 'votes');
-        expect(sampleMessage.votes).to.be.an('array').to.have.lengthOf(4);
+        expect(sampleMessage.votes).to.be.an('array').to.have.lengthOf(3);
         expect(sampleMessage.votes[0]).to.have.keys('id', 'age', 'sex', 'income', 'livingEnvironment');
     });
 

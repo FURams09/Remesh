@@ -60,6 +60,7 @@ export default class Filter {
                     if (!messageToVote) {throw new Error(`message not found questionId: ${message.questionId} messageId: ${message.messageId}`)}
                      
                     messageToVote.AddVoteToMessage(user);
+     
                     if (messageToVote.creatorId === user.id) {
                         messageToVote.hasCreator = true;
                     };
