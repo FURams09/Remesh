@@ -1,7 +1,7 @@
 
 const expect = require('chai').expect;
 import * as mocha from 'mocha';
-import array from '../array';
+import array from '../lib/array-reverse';
 
 describe('Test ReverseArray', () => {
     it('should reverse valid entry', (done) => {

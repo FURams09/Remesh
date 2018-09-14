@@ -8,12 +8,10 @@
         "lib": [ "es2015", "es7"]
     },
     "include": [
-        "messages/server.js"
-        
+        "remesh/server.js"    
     ]
     ,
     "exclude": [
-        "node_modules",
-        "messages/config"
+        "node_modules"
     ]
 }
