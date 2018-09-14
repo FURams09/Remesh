@@ -1,4 +1,5 @@
 import {User, DisplayMessage, MessageKey} from '../models';
+declare var process :any;
 export enum queryType {
     users,
     messages,

@@ -1,5 +1,6 @@
 import apiConfig from '../config/api';
 import axios from 'axios';
+declare var process :any;
 
 export default async (queryType: string, id : number = -1) => {
         const url = `${apiConfig.url}/${queryType}?${id >=0 ? '' : `${id}`}`

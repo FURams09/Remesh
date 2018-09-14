@@ -1,7 +1,9 @@
 /node_modules
 
-/dist
+/dist-array-reverser
+/dist-message-filter
 
 /test
 
 /mock-api
+

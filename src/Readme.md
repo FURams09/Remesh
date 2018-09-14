@@ -7,9 +7,11 @@ I decided to make this as a typescript project both as an excuse to try the type
 
 The package.json file is configured for Windows so if you're running this on a Mac you'll need to make changes to the scripts to run these programs.
 
-the remesh folder 
+The code for both projects is contained in the _src_ folder. All of the code for the array-reverser is in _lib/array-reverser.ts_. The rest of the directory is used in the message filter app. Building either project will extract the necessary files to a dist-[project name] directory in the main directory.
 
-##Running The Programs
+Both projects have their tests in the same _tests_ folder but are divided out by module. Although in the real world these the two projects don't sahre any code and are build into two different projects so it would have probably been better to run them in seperate test folders, but for this exercise it was helpful to run all tests to catch an inadvertant typo or file rename right away. 
+
+All functions are commented with JSDoc comments.
 
 ####Array Reverser
 ___
@@ -21,9 +23,10 @@ The run-array.js script is where you can define the array you would like to reve
 
 Run: `npm run start`
 This command will 
-    -Clean the dist folder and run the ts compiler based on tsconfig.array.json. You can also run this step by running `npm run build:array`
-    -run the script run-array.js. 
+    -Clean the _dist-array-message_ directory and run the ts compiler based on _tsconfig.array.json_. You can also run this step by running `npm run build:array`
+    -run the script _run-array.js_. 
 
+ 
 
 ####Message Filter
 ___
@@ -48,4 +51,17 @@ ___
 >- Remember, your code should be fully tested!
 
 
+The _run-array.js_ script is where you can define the array you would like to reverse by setting arrayToReverse. This is the only configuration necessary. When it runs it will output the reversed array to the console and exit. 
+
+Run: `npm run start`
+This command will 
+    -Clean the _dist-message-filter_ directory and run the ts compiler based on _tsconfig.message.json_. You can also run this step by running `npm run build:array`
+    -run the script run-message.js. 
+
 ##Tests
+
+Run: `npm run test`
+This command will 
+    -Clean the _test_ folder and run the ts compiler based on _tsconfig.test.json_. 
+    -run the tests defined in the _src/tests_ directory. 
+As I mentioned above both projects are tested with the same command but each lib file has its own test. 
