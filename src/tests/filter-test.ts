@@ -18,11 +18,9 @@ describe ("Test Filter", () => {
         incomeCriteria = new FilterCriteria('income', ['<20,000']);
         livingEnvironmentCriteria = new FilterCriteria('livingEnvironment', ['Urban', 'Rural']);
         baseFilter = [ageCriteria, incomeCriteria, livingEnvironmentCriteria];
-
     });
     
     it ("should return correctly filtered users", () => {
-        
         let filteredUsers = Filter.FilterUsers(MockUsers, baseFilter);
         expect(filteredUsers).to.have.lengthOf(11);
         filteredUsers.forEach(user => {
@@ -50,9 +48,10 @@ describe ("Test Filter", () => {
         let undefinedFilter = Filter.FilterUsers(MockUsers, undefined);
         expect(undefinedFilter).to.be.an('array').that.has.lengthOf(1).that.includes(false);
     });
+    
     it ('should ignore blank search parameter', () => {
         let emptyIncomeFilter = [ageCriteria, incomeCriteria, livingEnvironmentCriteria, new FilterCriteria('income', [])];
-        let filteredUsers = Filter.FilterUsers(MockUsers, baseFilter);
+        let filteredUsers = Filter.FilterUsers(MockUsers, emptyIncomeFilter);
         expect(filteredUsers).to.have.lengthOf(11);
         filteredUsers.forEach(user => {
             expect(ageCriteria.criteria).to.include(user.age);

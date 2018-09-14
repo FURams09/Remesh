@@ -40,27 +40,22 @@ describe ("Test Models", () => {
 
         let undefinedKey = () => {new FilterCriteria(undefined, ['18-24'])};
         expect(undefinedKey).to.throw();
-        
     });
 
     it ("should build valid MessageKey", () => {
-        let newKey = new MessageKey(1, 2, 3);
-        expect(newKey).to.have.all.keys('messageId', 'questionId', 'creatorId');
+        let newKey = new MessageKey(1, 2);
+        expect(newKey).to.have.all.keys('messageId', 'questionId');
         
         expect(newKey.questionId).to.equal(1);
         expect(newKey.messageId).to.equal(2);
-        expect(newKey.creatorId).to.equal(3);
     });
 
     it ("should handle an invalid MessageKeys", () => {
-        let undefinedQuestion = () =>{new MessageKey(undefined, 2, 3);}
+        let undefinedQuestion = () =>{new MessageKey(undefined, 2);}
         expect(undefinedQuestion).to.throw();
 
-        let undefinedMessage = () =>{new MessageKey(1, undefined, 3);}
+        let undefinedMessage = () =>{new MessageKey(1, undefined);}
         expect(undefinedMessage).to.throw();
-
-        let undefinedCreator = () =>{new MessageKey(1, 2, undefined);}
-        expect(undefinedCreator).to.throw();
     })
 
     it ('should make valid Display Message', () => {
@@ -85,6 +80,5 @@ describe ("Test Models", () => {
 
         let undefinedCreator = () =>{new DisplayMessage(1, 2, 'Sample Message', undefined);}
         expect(undefinedCreator).to.throw();
-        
     });
 })

@@ -1,15 +1,11 @@
 import {User, DisplayMessage, MessageKey} from '../models';
 declare var process :any;
-export enum queryType {
-    users,
-    messages,
-    votes, 
-}
+
 export default class Utility {
    /**
     * This function takes the Array of users from the remesh session and turns them into a
-    * User. Even though an unprocessed user object from the API will work as a valid user, 
-    * I wanted to use the new User constructor as an easy way to to validate all of the users
+    * User. Even though an unprocessed user object from the API will work as a valid User, 
+    * I wanted to use the new User constructor to validate all of the users
     * (and because it gives you intellisense!)
     * 
     * @param users Array of users in Remesh session
@@ -30,7 +26,7 @@ export default class Utility {
         
     }
 /**
- * Takes the votes and messages for a session and build an index of UserIds with values of MessageKeys for messages that user voted on.
+ * Takes the votes for a session and build an index of UserIds with values of arrays of MessageKeys for messages that user voted on.
  * Since we filter down to a list of users we'll have their ids and can just look them up in constant time. 
  * @param votes An array of Votes from Remesh Session
  */
@@ -43,7 +39,7 @@ export default class Utility {
                 if (!userMessageIndex[vote.userId]) {
                     userMessageIndex[vote.userId] = [];
                 }
-                userMessageIndex[vote.userId].push(new MessageKey(vote.questionId, vote.messageId, vote.id));
+                userMessageIndex[vote.userId].push(new MessageKey(vote.questionId, vote.messageId));
             });
 
             return  userMessageIndex;  
@@ -55,7 +51,8 @@ export default class Utility {
         }
     }
     /**
-     * Takes an array of messages, and returns an index with a compound key of the questionId and the MessageID (represented by a MessageKey later);
+     * Takes an array of messages, and returns an index with a compound key of the questionId and the MessageID 
+     * (represented by a MessageKey later), and the message that key represents. 
      * 
      * @param messages An array of Messages from Remesh Session
      */

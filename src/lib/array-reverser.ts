@@ -1,7 +1,8 @@
 class ArrayReverser {
     /**
-     * The reverseArray function will loop through half an array of size n, and swap the ith element
-     *  with the (n - i)th where i is the curreng index of the array. 
+     * The reverseArray function will loop through half an array of size n
+     * and swap the first and the last * elements, then the second and 
+     * second to last elements, and so on, where i is the curreng index of the array. 
      * If it finds that the either value it is going to swap is an array, 
      * it will call itself on that array and put the reversed array in its new position. 
      * 
@@ -24,7 +25,6 @@ class ArrayReverser {
             arr[swapIndex] = arr[i];
             arr[i] = valueStore;
         }
-
         if (arr.length % 2 === 1 && Array.isArray(arr[(arr.length /2) + 1])) {
             let middleElement = arr[(arr.length /2) + 1];
             if (Array.isArray(middleElement)){

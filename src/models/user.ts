@@ -1,5 +1,8 @@
 import Constants from '../constants';
 
+/**
+ * Represents a Remesh User that can be filtered by an Array of FilterCriteria.
+ */
 export default class User {
     id: number
     age: string
