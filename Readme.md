@@ -1,8 +1,8 @@
-#Gregory Padin's Remesh Interview Project
+# Gregory Padin's Remesh Interview Project
 
 Thank you again for considering me for a position at Remesh. Below I've outlined the structure of the project 
 
-##Project Structure
+## Project Structure
 
 The package.json file is configured for Windows so if you're running this on a Mac 
 you'll need to make changes to the scripts to run these programs.
@@ -17,7 +17,7 @@ so it would have probably been better to run them in seperate test folders, but 
 to just run them all with the same structure as the _src_ folder. 
 
 
-####Array Reverser
+#### Array Reverser
 ___
 >Write some code (including tests) that will reverse an array of>arbitrary elements
 >in place along with any arrays (or  arrays of >arrays). 
@@ -33,7 +33,7 @@ This command will
     -run the script _run-array.js_. 
 
  
-####Message Filter
+#### Message Filter
 ___
 >We have an API that returns JSON-encoded data related to one of our
 >Remesh sessions. Our API returns four types of data: users, questions,
@@ -70,7 +70,7 @@ Once the server is running (Port 8081 by default) you can make a post request to
 with either a JSON or a url encoded form representing your search criteria. It will then return an array of all
 the messages that had votes from Users matching your search criteria. 
 
-##Tests
+## Tests
 
 Run: `npm run test`
 This command will 
