@@ -4,7 +4,6 @@ import Search from "./lib/filter";
 import Utility from './lib/utility'      
 
 import {FilterCriteria} from './models';
-import ArrayReverser from './array';
 
 
 
@@ -48,7 +47,7 @@ app.post('/searchResults', async (req, res, next) => {
         let messageIndex = Utility.BuildMessageIndex(responses[1]);
 
         let usersToDisplay = Search.FilterUsers(responses[2], responses[3]);
-        let filteredMessages = Search.GetUsersMessages(usersToDisplay, userMessages, messageIndex);
+        let filteredMessages = Search.GetFilteredMessages(usersToDisplay, userMessages, messageIndex);
         res.send(filteredMessages);
             
     } catch (ex) {
