@@ -4,6 +4,8 @@ class Filter {
     /**
      * Returns an array of Users who match all of the filter criteria provided
      * on error this will return the array [false] instead of false to satisfy ts type safety.
+     * With a change to the users type and a renaming this could also be used to filter the final array
+     * of messages as well
      *
      * This will run in M * N time where M is the lenght of the Users array and N the number of filter criteria
      * @param users Array of Users to filter
@@ -30,7 +32,11 @@ class Filter {
         }
     }
     /**
-     * This Function builds the final return object which is an Object using the same keys
+     * This Function builds the final return object which is an array of DisplayMessages which have votes from
+     * the users. I chose to fill the Array of DisplayMessage votes with Users instead of just the ids mostly
+     * for observability. In the real world I would have returned just the ids and let the consumer of this
+     * list deal with retrieving the User data it needed.
+     *
      * @param usersToDisplay Array of Users to get messages for
      * @param userMessages Lookup list that matches UserIds to MessageKeys for looking up a users messages
      * from the array of messages returned from the Remesh API.
@@ -63,7 +69,6 @@ class Filter {
                     ;
                 });
             });
-            console.log(returnMessages);
             return returnMessages;
         }
         catch (ex) {

@@ -12,7 +12,7 @@ describe ("Test Filter", () => {
     let mockUserMessages, mockMessageIndex, baseFilter;
     let ageCriteria, incomeCriteria, livingEnvironmentCriteria
     before(async () => {
-        mockUserMessages = Utility.BuildUserMessages(MockVotes, MockMessages);
+        mockUserMessages = Utility.BuildUserMessages(MockVotes);
         mockMessageIndex = Utility.BuildMessageIndex(MockMessages);
         ageCriteria = new FilterCriteria('age', ['18-24', '65+'])
         incomeCriteria = new FilterCriteria('income', ['<20,000']);

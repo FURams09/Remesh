@@ -8,6 +8,14 @@ var queryType;
     queryType[queryType["votes"] = 2] = "votes";
 })(queryType = exports.queryType || (exports.queryType = {}));
 class Utility {
+    /**
+     * This function takes the Array of users from the remesh session and turns them into a
+     * User. Even though an unprocessed user object from the API will work as a valid user,
+     * I wanted to use the new User constructor as an easy way to to validate all of the users
+     * (and because it gives you intellisense!)
+     *
+     * @param users Array of users in Remesh session
+     */
     static BuildSearchableUsers(users) {
         try {
             let searchableUsers = users.map(user => {
@@ -22,15 +30,16 @@ class Utility {
             return false;
         }
     }
-    static BuildUserMessages(votes, messages) {
+    /**
+     * Takes the votes and messages for a session and build an index of UserIds with values of MessageKeys for messages that user voted on.
+     * Since we filter down to a list of users we'll have their ids and can just look them up in constant time.
+     * @param votes An array of Votes from Remesh Session
+     */
+    static BuildUserMessages(votes) {
         try {
             let userMessageIndex = {};
             if (!Array.isArray(votes)) {
                 throw new Error(`votes not valid`);
-            }
-            ;
-            if (!Array.isArray(messages)) {
-                throw new Error(`messages are not valid`);
             }
             ;
             votes.forEach(vote => {
@@ -38,12 +47,6 @@ class Utility {
                     userMessageIndex[vote.userId] = [];
                 }
                 userMessageIndex[vote.userId].push(new models_1.MessageKey(vote.questionId, vote.messageId, vote.id));
-            });
-            messages.forEach(message => {
-                if (!userMessageIndex[message.creatorId]) {
-                    userMessageIndex[message.creatorId] = [];
-                }
-                userMessageIndex[message.creatorId].push(new models_1.MessageKey(message.questionId, message.id, message.creatorId));
             });
             return userMessageIndex;
         }

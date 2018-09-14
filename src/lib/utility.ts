@@ -30,15 +30,14 @@ export default class Utility {
         
     }
 /**
- * Takes the votes and messages for a session and 
+ * Takes the votes and messages for a session and build an index of UserIds with values of MessageKeys for messages that user voted on.
+ * Since we filter down to a list of users we'll have their ids and can just look them up in constant time. 
  * @param votes An array of Votes from Remesh Session
- * @param messages An array of Messages from Remesh Session
  */
-    static BuildUserMessages (votes: any[], messages: any[]) {
+    static BuildUserMessages (votes: any[]) {
         try {
             let userMessageIndex = {};
             if (!Array.isArray(votes)) {throw new Error(`votes not valid`)};
-            if (!Array.isArray(messages)) {throw new Error(`messages are not valid`)};
 
             votes.forEach(vote => {
                 if (!userMessageIndex[vote.userId]) {
