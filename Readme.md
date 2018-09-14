@@ -43,9 +43,9 @@ This is the only configuration necessary. When it runs it will output the revers
 
 Run: `npm run start`
 This command will 
-    -Clean the _dist-array-message_ directory and run the ts compiler based on _tsconfig.array.json_.
+    - Clean the _dist-array-message_ directory and run the ts compiler based on _tsconfig.array.json_.
      You can also run this step by running `npm run build:array`
-    -run the script _run-array.js_. 
+    - run the script _run-array.js_. 
 
  
 #### Message Filter
@@ -78,9 +78,9 @@ Otherwise just ignore this script.
 
 Run: `npm run serve`
 This command will 
-    -Clean the _dist-message-filter_ directory and run the ts compiler based on _tsconfig.message.json_. 
+    - Clean the _dist-message-filter_ directory and run the ts compiler based on _tsconfig.message.json_. 
     You can also run this step by running `npm run build:message`
-    -run the script _server.js_. 
+    - run the script _server.js_. 
 Once the server is running (Port 8081 by default) you can make a post request to /searchResults 
 with either a JSON or a url encoded form representing your search criteria. It will then return an array of all
 the messages that had votes from Users matching your search criteria. 
@@ -89,6 +89,6 @@ the messages that had votes from Users matching your search criteria.
 
 Run: `npm run test`
 This command will 
-    -Clean the _test_ folder and run the ts compiler based on _tsconfig.test.json_. 
-    -run the tests defined in the _src/tests_ directory. 
+    - Clean the _test_ folder and run the ts compiler based on _tsconfig.test.json_. 
+    - run the tests defined in the _src/tests_ directory. 
 As I mentioned above both projects are tested with the same command but each lib file has its own test.
