@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "test",
+        "outDir": "dist/array-reverser",
         "module": "commonjs",
         "target": "es6",
         "allowJs": true,
@@ -8,6 +8,10 @@
         "lib": [ "es2015", "es7"]
     },
     "include": [
-        "remesh/**/*"
+        "remesh/run-array.js"  
+    ]
+    ,
+    "exclude": [
+        "node_modules"
     ]
 }

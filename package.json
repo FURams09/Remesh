@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node dist/run-array.js",
-    "serve": "tsc && nodemon dist/server.js",
-    "watch": "rd /s /q dist && tsc --watch",
-    "build": "rd /s /q dist && tsc",
-    "run:api": "npm run --prefix ../interview-mock-api serve",
+    "start": "npm run build:array && node dist/run-array.js",
+    "serve": "npm run build:message && nodemon dist/message-filter/server.js",
+    "build:array": "rd /s /q dist/array && tsc -p tsconfig.array.json",
+    "build:message": "rd /s /q dist/message-filter && tsc -p tsconfig.message.json",
+    "start:api": "npm run --prefix ../interview-mock-api serve",
     "test": "SET NODE_ENV=test&& rd /s /q test && tsc -p tsconfig.test.json &&  mocha test/tests"
     
   },
