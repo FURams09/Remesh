@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npm run build:array && node dist-array-reverser/run-array.js",
     "serve": "npm run build:message && nodemon dist-message-filter/server.js",
+    "serve:docker": "node server.js",
     "build:array": "rd /s /q dist-array-reverser & tsc -p tsconfig.array.json",
-    "build:message": "rd /s /q dist-message-filter & tsc -p tsconfig.message.json",
-    "start:api": "npm run --prefix ../interview-mock-api serve",
+    "build:message": "rd /s /q dist-message-filter & tsc -p tsconfig.message.json && docker build . -t gregpadin/remesh-interview",
     "test": "SET NODE_ENV=test&& rd /s /q test & tsc -p tsconfig.test.json &&  mocha test/tests"
   },
   "author": "",
@@ -20,13 +20,12 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.9.4",
     "chai": "^4.1.2",
-    "express": "^4.16.3",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
     "typescript": "^3.0.3"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "lodash": "^4.17.10"
+    "express": "^4.16.3"
   }
 }

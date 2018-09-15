@@ -1,3 +1,4 @@
 export default {
-    url: 'http://localhost:8080'
+    devUrl: 'http://localhost:8080',
+    dockerUrl: 'http://mock-api:8080'
 }

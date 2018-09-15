@@ -9,7 +9,17 @@ declare var process :any;
  * @param {number} id - id of user wanted (optional);
  */
 const QueryRemesh = async (queryType: string, id : number = 0) => {
-    const remeshURL = `${apiConfig.url}/${queryType}?${id >0 ? '' : `${id}`}`
+    let remeshURL : string;
+    switch (process.env.NODE_ENV) {
+        case 'DOCKER':
+            remeshURL = `${ apiConfig.dockerUrl }/${queryType}${id >0 ? '' : `?${id}`}`
+            break;
+        default:
+            remeshURL = `${ apiConfig.devUrl }/${queryType}${id >0 ? '' : `?${id}`}`
+            console.log(remeshURL);
+            break;
+    }
+
     try {
         let response = await axios.get(remeshURL);
 
@@ -19,7 +29,7 @@ const QueryRemesh = async (queryType: string, id : number = 0) => {
         return response.data;
     } catch (ex) {
         if (!(process.env.NODE_ENV === 'test')) {
-            console.log(ex.config);
+            console.log(ex);
         }
         return false;
     }   

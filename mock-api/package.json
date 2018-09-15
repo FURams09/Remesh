@@ -1,0 +1,17 @@
+{
+    "name": "frontend-takehome",
+    "version": "1.0.0",
+    "description": "code for remesh takehome test",
+    "main": "index.js",
+    "scripts": {
+      "test": "test",
+      "serve": "json-server --port 8080 --watch db.json",
+      "serve:docker": "json-server --host 0.0.0.0 --port 8080 --watch db.json",
+      "db": "node scripts.js"
+    },
+    "author": "Dan@Remesh",
+    "license": "MIT",
+    "dependencies": {
+      "json-server": "^0.14.0"
+    }
+  }

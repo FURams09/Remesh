@@ -1,9 +1,9 @@
 /node_modules
+/mock-api/node_modules
 
 /dist-array-reverser
 /dist-message-filter
 
 /test
 
-/mock-api
-
+/mock-api/db.json

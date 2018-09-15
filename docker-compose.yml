@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  remesh-interview:
+    image: gregpadin/remesh-interview
+    build: .
+    environment:
+      NODE_ENV: DOCKER
+    ports:
+      - 8081:8081
+    links:
+      - "mock-api"
+  mock-api:
+    image: gregpadin/mock-api
+    build: 
+      context: .
+      dockerfile: mock-api.Dockerfile
+    ports:
+      - 8080:8080
