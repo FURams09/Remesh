@@ -90,3 +90,8 @@ This command will
     -Clean the _test_ folder and run the ts compiler based on _tsconfig.test.json_. 
     -run the tests defined in the _src/tests_ directory. 
 As I mentioned above both projects are tested with the same command but each lib file has its own test.
+
+## Dockerization
+Just for kicks I wanted to dockerize this project by creating one container for the api and another for the production build of the message filter.
+
+Run: `docker-compose up` and you'll have a version of message-filter running and configured to query a freshly created db on the mock-api container. 
